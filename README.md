@@ -8,4 +8,4 @@ MIT / BSD
 
 ## Author Information
 
-This Docker Compose Traefik HTTP was created in 2022 by [Asapdotid](https://github.com/asapdotid) 🚀
+This Docker Compose Redis was created in 2023 by [Asapdotid](https://github.com/asapdotid) 🚀
