@@ -1,0 +1,49 @@
+version: '3.7'
+
+networks:
+  proxy:
+    driver: bridge
+    external: true
+  secure:
+    driver: bridge
+    external: true
+
+services:
+  redis-master:
+    image: ${DOCKER_REGISTRY?}/${DOCKER_NAMESPACE?}/${DOCKER_IMAGE?}:${DOCKER_IMAGE_TAG?}
+    restart: unless-stopped
+    networks:
+      - proxy
+      - secure
+    ports:
+      - "${REDIS_OPEN_PORT:-6379}:6379"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DISABLE_COMMANDS=${REDIS_DISABLE_COMMANDS}
+      - REDIS_AOF_ENABLED=${REDIS_AOF_ENABLED}
+    volumes:
+      - ${CURDIR}/.data/cache:/bitnami/redis/data
+    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+    sysctls:
+      - net.core.somaxconn=1024
+
+  redis-replica:
+    image: ${DOCKER_REGISTRY?}/${DOCKER_NAMESPACE?}/${DOCKER_IMAGE?}:${DOCKER_IMAGE_TAG?}
+    restart: unless-stopped
+    networks:
+      - secure
+    ports:
+      - '6379'
+    depends_on:
+      - redis-master
+    environment:
+      - REDIS_REPLICATION_MODE=slave
+      - REDIS_MASTER_HOST=redis-master
+      - REDIS_MASTER_PORT_NUMBER=${REDIS_OPEN_PORT}
+      - REDIS_MASTER_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_REPLICA_PASSWORD}
+      - REDIS_DISABLE_COMMANDS=${REDIS_DISABLE_COMMANDS}
+    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+    sysctls:
+      - net.core.somaxconn=1024
