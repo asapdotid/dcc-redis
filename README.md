@@ -42,7 +42,7 @@ Setup Docker Compose environment `src/.env`:
 make set-env
 ```
 
-Docker compose `up`/`down`/`config`/`logs`/`pas`:
+Docker compose `up`/`down`/`config`/`logs`/`ps`:
 
 ```bash
 make up
