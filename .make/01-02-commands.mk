@@ -7,6 +7,10 @@ execute-in-container: ## Execute a command in a container. E.g. via "make execut
 	@$(if $(COMMAND),,$(error COMMAND is undefined))
 	@$(EXECUTE_IN_ANY_CONTAINER) $(COMMAND)
 
-.PHONY: shell
-shell: ## Execute shell script in Redis container with arguments ARGS="pwd"
-	@$(EXECUTE_IN_APPLICATION_CONTAINER) $(ARGS);
+.PHONY: shell-master
+shell-master: ## Execute shell in Redis Master container with arguments ARGS="pwd"
+	@$(DOCKER_SERVICE_NAME_REDIS_MASTER) $(ARGS);
+
+.PHONY: shell-slave
+shell-slave: ## Execute shell in Redis Slave with arguments ARGS="pwd"
+	@$(DOCKER_SERVICE_NAME_REDIS_SLAVE) $(ARGS);
