@@ -1,6 +1,6 @@
 # Container names
 ## must match the names used in the composer.yml files
-DOCKER_SERVICE_NAME:=redis-master
+DOCKER_SERVICE_NAME?=
 
 # FYI:
 # Naming convention for images is $(DOCKER_REGISTRY)/$(DOCKER_NAMESPACE)/$(DOCKER_IMAGE):$(DOCKER_IMAGE_TAG)
