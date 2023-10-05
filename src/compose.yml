@@ -24,7 +24,7 @@ services:
       - REDIS_AOF_ENABLED=${REDIS_AOF_ENABLED}
     volumes:
       - ${CURDIR}/.data/cache:/bitnami/redis/data
-    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+    command: /opt/bitnami/scripts/redis/run.sh --maxmemory ${REDIS_MAX_MEMORY}
     sysctls:
       - net.core.somaxconn=1024
 
@@ -44,6 +44,6 @@ services:
       - REDIS_MASTER_PASSWORD=${REDIS_PASSWORD}
       - REDIS_PASSWORD=${REDIS_REPLICA_PASSWORD}
       - REDIS_DISABLE_COMMANDS=${REDIS_DISABLE_COMMANDS}
-    command: /opt/bitnami/scripts/redis/run.sh --maxmemory 100mb
+    command: /opt/bitnami/scripts/redis/run.sh --maxmemory ${REDIS_MAX_MEMORY}
     sysctls:
       - net.core.somaxconn=1024
