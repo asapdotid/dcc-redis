@@ -28,7 +28,7 @@ services:
     sysctls:
       - net.core.somaxconn=1024
 
-  redis-replica:
+  redis-slave:
     image: ${DOCKER_REGISTRY?}/${DOCKER_NAMESPACE?}/${DOCKER_IMAGE?}:${DOCKER_IMAGE_TAG?}
     restart: unless-stopped
     networks:
