@@ -9,8 +9,8 @@ execute-in-container: ## Execute a command in a container. E.g. via "make execut
 
 .PHONY: shell-master
 shell-master: ## Execute shell in Redis Master container with arguments ARGS="pwd"
-	@$(DOCKER_SERVICE_NAME_REDIS_MASTER) $(ARGS);
+	@$(EXECUTE_IN_APPLICATION_MASTER) $(ARGS);
 
 .PHONY: shell-slave
 shell-slave: ## Execute shell in Redis Slave with arguments ARGS="pwd"
-	@$(DOCKER_SERVICE_NAME_REDIS_SLAVE) $(ARGS);
+	@$(EXECUTE_IN_APPLICATION_SLAVE) $(ARGS);
