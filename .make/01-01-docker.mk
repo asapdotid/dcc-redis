@@ -39,7 +39,7 @@ ifeq ($(EXECUTE_IN_CONTAINER),true)
 endif
 
 .PHONY: validate-variables
-validate-docker-variables:
+validate-variables:
 	@$(if $(DOCKER_REGISTRY),,$(error DOCKER_REGISTRY is undefined))
 	@$(if $(DOCKER_NAMESPACE),,$(error DOCKER_NAMESPACE is undefined))
 	@$(if $(DOCKER_IMAGE),,$(error DOCKER_IMAGE is undefined - Did you run make-init?))
