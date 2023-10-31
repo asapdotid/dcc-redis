@@ -7,7 +7,7 @@ Base Image: `Bitnami Redis` [Documentation](https://hub.docker.com/r/bitnami/red
 Bitnami container running with user `1001`, so setup directory permission to `.data/cache` 👍
 
 ```bash
-sudo chmod -R 1001:1001 .data/cache
+sudo chown -R 1001:1001 .data/cache
 ```
 
 Create docker network `secure` & `proxy` for external used with other docker containers:
