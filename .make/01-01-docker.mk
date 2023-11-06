@@ -54,7 +54,7 @@ compose/.env:
 .PHONY: set-env
 set-env: compose/.env ## Docker compose initial environment
 set-env:
-    @echo "${YELLOW}Please update your${RESET} ${GREEN}src/.env${RESET} ${YELLOW}file with your settings${RESET}"
+	@echo "${YELLOW}Please update your${RESET} ${GREEN}src/.env${RESET} ${YELLOW}file with your settings${RESET}"
 
 .PHONY: rm-env
 rm-env: ## Remove the .env file for docker
